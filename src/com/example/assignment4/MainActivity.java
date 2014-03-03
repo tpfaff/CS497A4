@@ -2,12 +2,17 @@ package com.example.assignment4;
 
 import java.io.File;
 
+
+
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.view.Menu;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -168,4 +173,12 @@ public class MainActivity extends Activity {
 		}
 		return false;
 }
+	public void imageClicked(View view){
+		int id=view.getId();
+		Intent intent = new Intent(MainActivity.this,EditItemActivity.class);
+		intent.putExtra("imageId", id); //put extra to pass the info to the new activity
+		MainActivity.this.startActivity(intent); //start the new activity
+		//pass the views id to the new intent
+		//Intent intent=new Intent();
+	}
 }
