@@ -171,6 +171,17 @@ public class MainActivity extends Activity {
 }
 	public void imageClicked(View view){
 		int id=view.getId();
+		switch(id){
+		case R.id.img_view_1:
+			id=drawable1Resource;
+			break;
+		case R.id.img_view_2:
+			id=drawable2Resource;
+			break;
+		case R.id.img_view_3:
+			id=drawable3Resource;
+			break;
+		}
 		Intent intent = new Intent(MainActivity.this,EditItemActivity.class);
 		intent.putExtra("imageId", id); //put extra to pass the info to the new activity
 		MainActivity.this.startActivity(intent); //start the new activity
