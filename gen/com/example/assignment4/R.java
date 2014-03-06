@@ -29,7 +29,8 @@ public final class R {
         public static final int space5=0x7f020005;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000e;
+        public static final int action_settings=0x7f08000f;
+        public static final int button1=0x7f08000e;
         public static final int image_rating_bar=0x7f08000d;
         public static final int image_to_edit=0x7f08000c;
         public static final int img_view_1=0x7f080002;

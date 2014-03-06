@@ -63,8 +63,8 @@ public class MainActivity extends Activity {
 		ratingbar1 =(RatingBar)findViewById(R.id.rating_bar_1);
 		ratingbar2 =(RatingBar)findViewById(R.id.rating_bar_2);
 		ratingbar3 =(RatingBar)findViewById(R.id.rating_bar_3);
-		deleteDatabase();
-		initDatabase();
+		this.deleteDatabase("Database");
+		//initDatabase();
 		
 		db=initDatabase();
 		                  //table //columns (null gives all columns) //WHERE clause
@@ -136,10 +136,6 @@ public class MainActivity extends Activity {
 
 
 
-	private boolean deleteDatabase() {
-		File f= new File("\\Database");
-		return SQLiteDatabase.deleteDatabase(f);
-	}
 
 	private SQLiteDatabase initDatabase(){
 		db=this.openOrCreateDatabase("Database",this.MODE_PRIVATE,null);
