@@ -52,6 +52,15 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 	
 		
+		
+	}
+	
+	
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
 		img1=(ImageView)findViewById(R.id.img_view_1);
 		img2=(ImageView)findViewById(R.id.img_view_2);
 		img3=(ImageView)findViewById(R.id.img_view_3);
@@ -79,8 +88,8 @@ public class MainActivity extends Activity {
 		
 		 db.close();
 	}
-	
-	
+
+
 
 	private void setTitles() {
 		tv1.setText(title1);

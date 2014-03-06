@@ -1,6 +1,7 @@
 package com.example.assignment4;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,17 +18,25 @@ public class EditItemActivity extends Activity {
 	RatingBar ratingBar=null;
 	SQLiteDatabase db=null;
 	Cursor dbCursor=null;
+	Integer imageId=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		Intent intent=getIntent();
 		setContentView(R.layout.edit_item_layout);
-		Integer imageId=intent.getIntExtra("imageId",-1);
+		imageId=intent.getIntExtra("imageId",-1);
 		if(imageId==-1){
 			return;
 		}
 		
+		
+	}
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
 		textField=(EditText)findViewById(R.id.title);
 		ratingBar=(RatingBar)findViewById(R.id.image_rating_bar);
 		iv=(ImageView)findViewById(R.id.image_to_edit);
@@ -46,13 +55,23 @@ public class EditItemActivity extends Activity {
 			iv.setImageDrawable(img);
 			ratingBar.setRating(dbCursor.getFloat(2));
 	     }
+	
 	}
+
 	public void saveData(View view){
 	//find the row again
 	//insert into that row the new name and rating
 		//dbCursor=db.query("Pics", null, selection, selectionArgs, groupBy, having, orderBy);
-		if(dbCursor.moveToFirst()){
+		ContentValues cv = new ContentValues();
+		cv.put("DrawableName",textField.getText().toString()); //These Fields should be your String values of actual column names
+		cv.put("DrawableReference",imageId.toString());
+		cv.put("PictureRating",ratingBar.getRating());
+		//db.update("Pics", cv, "_id "+"="+1, null);
+		String selection="DrawableReference = ?";
+		String[] whereClause={imageId.toString()};
+		db.update("Pics", cv, selection,whereClause);
+		db.close();
 		//	db.execSQL(sql);//insert
 		}
 	}
-}
+
