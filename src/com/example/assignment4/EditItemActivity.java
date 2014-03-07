@@ -69,7 +69,7 @@ public class EditItemActivity extends Activity {
 		//db.update("Pics", cv, "_id "+"="+1, null);
 		String selection="DrawableReference = ?";
 		String[] whereClause={imageId.toString()};
-		db.update("Pics", cv, selection,whereClause);
+	int x=db.update("Pics", cv, selection,whereClause);
 		db.close();
 		//	db.execSQL(sql);//insert
 		}

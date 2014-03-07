@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-	
+		this.deleteDatabase("Database");
 		
 		
 	}
@@ -72,7 +72,7 @@ public class MainActivity extends Activity {
 		ratingbar1 =(RatingBar)findViewById(R.id.rating_bar_1);
 		ratingbar2 =(RatingBar)findViewById(R.id.rating_bar_2);
 		ratingbar3 =(RatingBar)findViewById(R.id.rating_bar_3);
-		this.deleteDatabase("Database");
+		;
 		//initDatabase();
 		
 		db=initDatabase();
