@@ -25,7 +25,7 @@ public class EditItemActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		Intent intent=getIntent();
 		setContentView(R.layout.edit_item_layout);
-		imageId=intent.getIntExtra("imageId",-1);
+		imageId=intent.getIntExtra("imageId",-1); //returns -1 if not found
 		if(imageId==-1){
 			return;
 		}
@@ -50,7 +50,7 @@ public class EditItemActivity extends Activity {
 		dbCursor=db.query("Pics",null,selection,whereClause,null,null,null);//get the row where the correct DrawableReference integer is found
 		
 	
-		if(dbCursor.moveToFirst()){
+		if(dbCursor.moveToFirst()){ //if the cursor has items in it, aka the queried row, then set the image,text,and rating with values from the db
 			textField.setText(dbCursor.getString(0)); 
 			iv.setImageDrawable(img);
 			ratingBar.setRating(dbCursor.getFloat(2));
@@ -59,19 +59,14 @@ public class EditItemActivity extends Activity {
 	}
 
 	public void saveData(View view){
-	//find the row again
-	//insert into that row the new name and rating
-		//dbCursor=db.query("Pics", null, selection, selectionArgs, groupBy, having, orderBy);
 		ContentValues cv = new ContentValues();
 		cv.put("DrawableName",textField.getText().toString()); //These Fields should be your String values of actual column names
 		cv.put("DrawableReference",imageId.toString());
 		cv.put("PictureRating",ratingBar.getRating());
-		//db.update("Pics", cv, "_id "+"="+1, null);
 		String selection="DrawableReference = ?";
 		String[] whereClause={imageId.toString()};
-	int x=db.update("Pics", cv, selection,whereClause);
+	int x=db.update("Pics", cv, selection,whereClause); //update the row where DrawableReference=imageId, where imageId is passed via the intent
 		db.close();
-		//	db.execSQL(sql);//insert
 		}
 	}
 

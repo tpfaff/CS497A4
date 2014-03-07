@@ -49,10 +49,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		this.deleteDatabase("Database");
-		
-		
+		setContentView(R.layout.activity_main);	
 	}
 	
 	
@@ -72,8 +69,6 @@ public class MainActivity extends Activity {
 		ratingbar1 =(RatingBar)findViewById(R.id.rating_bar_1);
 		ratingbar2 =(RatingBar)findViewById(R.id.rating_bar_2);
 		ratingbar3 =(RatingBar)findViewById(R.id.rating_bar_3);
-		;
-		//initDatabase();
 		
 		db=initDatabase();
 		                  //table //columns (null gives all columns) //WHERE clause
@@ -151,7 +146,7 @@ public class MainActivity extends Activity {
 		
 		db.execSQL("CREATE TABLE IF NOT EXISTS Pics(DrawableName TEXT,DrawableReference INTEGER,PictureRating REAL)");
 	    dbCursor=db.query("Pics",null,null,null,null,null,null);//get the whole table
-	 if(!dbCursor.moveToFirst()){//if theres not an element in the db yet, insert stuff
+	 if(!dbCursor.moveToFirst()){//if theres not an element in the db yet, insert stuff, else leave the db alone
 		db.execSQL("INSERT INTO Pics VALUES('"+"Space1"+"\'"+","+"\'"+R.drawable.space1+"\'"+","+"\'"+0+"')");
 		db.execSQL("INSERT INTO Pics VALUES('"+"Space2"+"\'"+","+"\'"+R.drawable.space2+"\'"+","+"\'"+0+"')");
 		db.execSQL("INSERT INTO Pics VALUES('"+"Space3"+"\'"+","+"\'"+R.drawable.space3+"\'"+","+"\'"+0+"')");
